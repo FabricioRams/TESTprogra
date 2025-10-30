@@ -15,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet para generar CAPTCHA dinámico
- * @author FFERA
- */
 @WebServlet(name = "FFERACaptchaServlet", urlPatterns = {"/FFERACaptchaServlet"})
 public class FFERACaptchaServlet extends HttpServlet {
 
@@ -30,23 +26,17 @@ public class FFERACaptchaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Generar código CAPTCHA aleatorio
         String codigoCaptcha = generarCodigoCaptcha();
-        
-        // Guardar en sesión
         HttpSession session = request.getSession(true);
         session.setAttribute("captcha", codigoCaptcha);
         
-        // Crear imagen
         BufferedImage imagen = crearImagenCaptcha(codigoCaptcha);
         
-        // Configurar respuesta
         response.setContentType("image/png");
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
         
-        // Enviar imagen
         OutputStream out = response.getOutputStream();
         ImageIO.write(imagen, "png", out);
         out.close();
@@ -77,7 +67,7 @@ public class FFERACaptchaServlet extends HttpServlet {
         g2d.setColor(new Color(200, 200, 200));
         for (int i = 0; i < 8; i++) {
             int x1 = random.nextInt(WIDTH);
-            int y1 = random.nextInt(HEIGHT);
+            int y1 = random.nextInt(HEIGHT);  // ← LÍNEA CORREGIDA
             int x2 = random.nextInt(WIDTH);
             int y2 = random.nextInt(HEIGHT);
             g2d.drawLine(x1, y1, x2, y2);
@@ -95,14 +85,12 @@ public class FFERACaptchaServlet extends HttpServlet {
         
         int x = 10;
         for (int i = 0; i < codigo.length(); i++) {
-            // Color aleatorio para cada letra
             g2d.setColor(new Color(
                 random.nextInt(100),
                 random.nextInt(100),
                 random.nextInt(100)
             ));
             
-            // Rotación ligera
             int y = 35 + random.nextInt(10);
             g2d.drawString(String.valueOf(codigo.charAt(i)), x, y);
             x += 22;
