@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <!-- Configuración de sesión -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <!-- Página de bienvenida -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Configuración de Servlets -->
+    
+    <!-- Servlet de CAPTCHA -->
+    <servlet>
+        <servlet-name>FFERACaptchaServlet</servlet-name>
+        <servlet-class>controlador.FFERACaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERACaptchaServlet</servlet-name>
+        <url-pattern>/FFERACaptchaServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet de Login -->
+    <servlet>
+        <servlet-name>FFERALoginServlet</servlet-name>
+        <servlet-class>controlador.FFERALoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERALoginServlet</servlet-name>
+        <url-pattern>/FFERALoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet de Reclamos -->
+    <servlet>
+        <servlet-name>FFERAReclamoServlet</servlet-name>
+        <servlet-class>controlador.FFERAReclamoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERAReclamoServlet</servlet-name>
+        <url-pattern>/FFERAReclamoServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet de Admin -->
+    <servlet>
+        <servlet-name>FFERAAdminServlet</servlet-name>
+        <servlet-class>controlador.FFERAAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERAAdminServlet</servlet-name>
+        <url-pattern>/FFERAAdminServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet de Usuarios -->
+    <servlet>
+        <servlet-name>FFERAUsuarioServlet</servlet-name>
+        <servlet-class>controlador.FFERAUsuarioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERAUsuarioServlet</servlet-name>
+        <url-pattern>/FFERAUsuarioServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Servlet de Reportes -->
+    <servlet>
+        <servlet-name>FFERAReportesServlet</servlet-name>
+        <servlet-class>controlador.FFERAReportesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FFERAReportesServlet</servlet-name>
+        <url-pattern>/FFERAReportesServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Configuración de errores -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error500.jsp</location>
+    </error-page>
+    
+</web-app>
